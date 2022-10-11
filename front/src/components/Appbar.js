@@ -11,14 +11,15 @@ const Appbar = () => {
     <AppBar
       style={styles.appbar}
       variant="bottom"
-      color="#39A2DB"
+      color="#ffffff"
+      tintColor="#98D7F6"
       leading={props => (
-        <IconButton icon={props => <Ionicons name="home" {...props} />} {...props} onPress={() => navigation.navigate("Home")} />
+        <IconButton icon={props => <Ionicons name="home" {...props} />} {...props} color={"#98D7F6"} onPress={() => navigation.navigate("Home")} />
       )}
       leadingContainerStyle={{ margin: 0, padding: 0 }}>
-      <IconButton style={styles.button} onPress={() => navigation.navigate("Feedback")} icon={props => <Ionicons name="chatbubble-ellipses" {...props} />} variant={"text"} />
-      <IconButton style={styles.button} onPress={() => navigation.navigate("Events")} icon={props => <Ionicons name="ios-calendar" {...props} />} variant={"text"} />
-      <IconButton style={styles.button} onPress={() => navigation.navigate("Profil")} icon={props => <Ionicons name="ios-person" {...props} />} variant={"text"} />
+      <IconButton style={styles.button} color="#98D7F6" onPress={() => navigation.navigate("Feedback")} icon={props => <Ionicons name="chatbubble-ellipses" {...props} />} variant={"text"} />
+      <IconButton style={styles.button} color="#98D7F6" onPress={() => navigation.navigate("Events")} icon={props => <Ionicons name="ios-calendar" {...props} />} variant={"text"} />
+      <IconButton style={styles.button} color="#98D7F6" onPress={() => navigation.navigate("Profil")} icon={props => <Ionicons name="ios-person" {...props} />} variant={"text"} />
 
     </AppBar>
   );
@@ -31,7 +32,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     width: '100%',
-    backgroundColor: '#39A2DB',
     position: "absolute",
     start: 0,
     end: 0,
