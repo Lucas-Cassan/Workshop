@@ -1,10 +1,12 @@
 const jwt = require('jsonwebtoken')
 const jwt_decode = require("jwt-decode");
+const fs = require("fs");
 
+const secretKey = fs.readFileSync('./config/secret.key', 'utf8');
 
 const verifyToken = (req, res, next) => {
     const token =
-        req.body.token || req.query.token || req.headers['authorization']
+        req.headers['authorization']
 
     if (!token) {
         return res
@@ -14,7 +16,7 @@ const verifyToken = (req, res, next) => {
             })
     }
     try {
-        const data = jwt.verify( token, "ueahzçidhaée&é&!&èéçà" );
+        const data = jwt.verify( token, secretKey );
         res.user = data.user;
     } catch (err) {
         return res

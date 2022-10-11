@@ -5,16 +5,15 @@ const jwt = require("jsonwebtoken");
 const jwt_decode = require('jwt-decode')
 
 module.exports.create = (req, res, next) => {
-  const { date, q1, q2, q3, q4, text, token} = req.body;
+  const { q1, q2, q3, text} = req.body;
 
-const data = jwt_decode( token  );
+const data = jwt_decode( req.headers['authorization']  );
 const user = User.findOne({email: data.user}).then(function (user) {
     const feedback = new Feedback({
-        date: date,
+        date: Date.now(),
         q1: q1,
         q2: q2,
         q3: q3,
-        q4: q4,
         text: text,
         user_id: user._id
 
@@ -65,32 +64,29 @@ module.exports.delete = (req, res, next) => {
 };
 
 module.exports.update = (req, res, next) => {
-    const { _id, date, q1, q2, q3, q4, text, token} = req.body;
+    const { _id, q1, q2, q3, text} = req.body;
     const update = {
-        date: date,
+        date: Date.now(),
         text: text,
         q1: q1,
         q2: q2,
-        q3: q3,
-        q4: q4,
+        q3: q3
     };
-    const data = jwt_decode( token  );
+    const data = jwt_decode( req.headers['authorization']);
 
     User.findOne({email: data.user}).then(function (user) {
         Feedback.findById(_id).then(function (feedback) {
             if (!feedback) {
                 throw new Error("mauvais ID");
             }
-                if (user._id !== feedback.user_id) {
+                if (user._id.toString() !== feedback.user_id) {
                     throw new Error("Vous n'êtes pas le créateur de ce feedback");
                 }
                 Feedback.findByIdAndUpdate(_id, update).then(function (feedback) {
                     feedback.text = text;
-                    feedback.date = date;
                     feedback.q1 = q1
                     feedback.q2 = q2
                     feedback.q3 = q3
-                    feedback.q4 = q4
                     res.status(200).json({
                         feedback: feedback
                     });

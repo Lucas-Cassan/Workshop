@@ -21,10 +21,6 @@ const feedbackSchema = new mongoose.Schema(
           type: Number,
           required: true
       },
-      q4: {
-          type: Number,
-          required: true
-      },
     text: {
       type: String,
       required: true,
