@@ -8,6 +8,7 @@ require("./config/db");
 
 // Routes
 const userRoutes = require("./routes/userRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
 
 // Express
 const app = express();
@@ -27,6 +28,10 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 // Routes
 app.use("/user", userRoutes);
+app.use("/feedback", feedbackRoutes);
+/**
+ * texte, date, user_id
+ */
 
 // Server
 app.listen(5000, () => {
