@@ -6,9 +6,10 @@ const verifyToken = require('../middlewares/verifyToken')
 
 // Auth
 router.post("/createEvent", verifyToken, eventController.createEvent);
-router.post("/getAllEvent", verifyToken, eventController.getAllEvent);
-router.post("/getOne", eventController.getOne);
-router.post("/updateOne", eventController.updateOne);
-router.post("/delete", verifyToken, eventController.delete);
+router.get("/getAllEvent", verifyToken, eventController.getAllEvent);
+router.get("/getOne", eventController.getOne);
+router.put("/updateOne", eventController.updateOne);
+router.delete("/delete", verifyToken, eventController.delete);
+router.put("/registered", verifyToken, eventController.registered);
 
 module.exports = router;

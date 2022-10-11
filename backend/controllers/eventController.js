@@ -1,6 +1,7 @@
 const Event = require("../models/eventModel");
 const User = require("../models/userModel");
 const jwt_decode = require("jwt-decode");
+const { ObjectId } = require('mongodb')
 
 module.exports.createEvent = (req, res) => {
 
@@ -18,6 +19,7 @@ module.exports.createEvent = (req, res) => {
                 date: date,
                 owner: user[0].name+" "+user[0].lastName,
                 place: place,
+                registered: [ObjectId(user._id)]
               });
               event
                 .save()
@@ -69,4 +71,23 @@ module.exports.delete = (req, res) => {
         res.send("Delete");
       })
       .catch(() => res.status(400).send({ error: "Erreur de modification" }));
+};
+
+module.exports.registered = (req, res) => {
+    const { token, idEvent } = req.body;
+    let decoded = jwt_decode(token);
+
+    Event.findById(idEvent).then(function (event){
+        User.findOne({email: decoded.user}).then(function (user){
+            event.registered.push(ObjectId(user._id));
+            Event.updateOne({_id: event._id}, {$set : {
+                registered: event.registered
+            }})
+              .then(() => {
+                return res.send("update not first time");
+              })
+              .catch(() => res.status(400).send({ error: "Erreur d'update not first time" }));
+        }).catch(() => res.status(400).send({ error: "Erreur de récupération de l'utilisateur"}))
+    }).catch(() => res.status(400).send({ error: "Erreur de récupération de l'event"}))
+    
 };

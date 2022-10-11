@@ -1,3 +1,4 @@
+const { json } = require("express");
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema(
@@ -31,6 +32,13 @@ const eventSchema = new mongoose.Schema(
     },
     place: {
         type: String,
+        required: true,
+        unique: false,
+        lowercase: true,
+        trim: true,
+    },
+    registered: {
+        type: Array,
         required: true,
         unique: false,
         lowercase: true,
