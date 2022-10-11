@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
       minlength: 3,
       maxlength: 30,
       trim: true,
-    },
+    }
   },
   {
     timestamps: true,
