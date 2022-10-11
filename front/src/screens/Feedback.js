@@ -1,11 +1,12 @@
 import React from "react";
 import { SafeAreaView, Text, Button } from "react-native";
+import Toppage from "../components/Toppage";
 import styles from "./style";
 
 const Feedback = () => {
     return (
       <SafeAreaView style={styles.view}>
-        <Text>Page des Feedback</Text>
+        <Toppage subTitle={"Retrouve ici l'historique de tes feedbacks hedbomadaires"}>Feedbacks</Toppage>
       </SafeAreaView>
     );
   };
