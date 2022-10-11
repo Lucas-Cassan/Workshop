@@ -8,6 +8,7 @@ require("./config/db");
 
 // Routes
 const userRoutes = require("./routes/userRoutes");
+const eventRoutes = require("./routes/eventRoutes");
 const feedbackRoutes = require("./routes/feedbackRoutes");
 
 // Express
@@ -28,6 +29,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 // Routes
 app.use("/user", userRoutes);
+app.use("/event", eventRoutes);
 app.use("/feedback", feedbackRoutes);
 /**
  * texte, date, user_id
