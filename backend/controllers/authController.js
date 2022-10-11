@@ -17,6 +17,7 @@ module.exports.signup = (req, res, next) => {
         lastName: lastName,
         email: email,
         password: hash,
+          xp: 0
       });
       user
         .save()

@@ -17,7 +17,12 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
       maxlength: 1000,
     },
-
+      xp: {
+          type: Number,
+          required: true,
+          minlength: 0,
+          maxlength: 10,
+      },
     name: {
       type: String,
       required: true,

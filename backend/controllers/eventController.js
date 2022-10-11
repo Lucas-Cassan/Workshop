@@ -24,7 +24,18 @@ module.exports.createEvent = (req, res) => {
               event
                 .save()
                 .then(() => {
-                    res.status(200).send("Event created");
+                    let kdo = false;
+                    let finalXp = user.xp + 2;
+                    if (finalXp>=10) {
+                        kdo = true;
+                        finalXp = finalXp-10;
+                    }
+                    User.updateOne({_id: user._id}, {xp: finalXp}).then(function () {
+                        res.status(201).json({
+                            message: "Event created",
+                            cadeau: kdo
+                        });
+                    })
                 })
         }
     })
@@ -84,7 +95,18 @@ module.exports.registered = (req, res) => {
                 registered: event.registered
             }})
               .then(() => {
-                return res.send("update not first time");
+                  let kdo = false;
+                  let finalXp = user.xp + 1;
+                  if (finalXp>=10) {
+                      kdo = true;
+                      finalXp = finalXp-10;
+                  }
+                  User.updateOne({_id: user._id}, {xp: finalXp}).then(function () {
+                      res.status(201).json({
+                          message: "Updated",
+                          cadeau: kdo
+                      });
+                  })
               })
               .catch(() => res.status(400).send({ error: "Erreur d'update not first time" }));
         }).catch(() => res.status(400).send({ error: "Erreur de récupération de l'utilisateur"}))

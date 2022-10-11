@@ -21,11 +21,21 @@ const user = User.findOne({email: data.user}).then(function (user) {
     feedback
         .save()
         .then(() => {
-            res.status(201).json({
-                message: "Feedback créé !"
-            });
+            let kdo = false;
+            let finalXp = user.xp + 4;
+            if (finalXp>=10) {
+                kdo = true;
+                finalXp = finalXp-10;
+            }
+            User.updateOne({_id: user._id}, {xp: finalXp}).then(function () {
+                res.status(201).json({
+                    message: "Feedback créé !",
+                    cadeau: kdo
+                });
+            })
         })
         .catch(() => res.status(400).send({ error: "Erreur" }));
+
 });
 
 };
