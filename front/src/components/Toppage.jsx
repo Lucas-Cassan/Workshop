@@ -14,17 +14,20 @@ const Toppage = (props) => {
 
 const styles = StyleSheet.create({
   title: {
+    fontFamily: 'Switzer-bold',
     fontSize: 28,
     color: "#003a45",
-    fontWeight: "bold",
     marginLeft: 25,
-    marginTop: 25,
+    marginTop: 10,
   },
   subtitle: {
-    fontSize: 12,
-    color: "#B2BDC2",
-    fontWeight: "bold",
+    fontFamily: 'Switzer-semibold',
+    fontSize: 13,
+    color: "#97A3A8",
+    marginTop: 5,
     marginLeft: 25,
+    letterSpacing: .1,
+
   },
 });
 
