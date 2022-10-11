@@ -32,13 +32,6 @@ const userSchema = new mongoose.Schema(
       maxlength: 30,
       trim: true,
     },
-
-    dev: {
-      type: Boolean,
-    },
-    marketing: {
-      type: Boolean,
-    },
   },
   {
     timestamps: true,
