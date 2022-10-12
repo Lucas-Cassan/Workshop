@@ -42,12 +42,17 @@ const user = User.findOne({email: data.user}).then(function (user) {
 
 module.exports.all = (req, res, next) => {
 
-  Feedback.find({}).then(function (feedbacks) {
-        res.status(200).json({
-          feedbacks: feedbacks
-        });
-      })
-      .catch(() => res.status(400).send({ error: "Erreur de récupération" }));
+    const data = jwt_decode( req.headers['authorization']  );
+    const user = User.findOne({email: data.user}).then(function (user) {
+        Feedback.find({user_id: user._id}).then(function (feedbacks) {
+            res.status(200).json({
+                feedbacks: feedbacks
+            });
+        })
+            .catch(() => res.status(400).send({ error: "Erreur de récupération" }));
+    });
+
+
 
 };
 

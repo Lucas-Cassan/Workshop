@@ -18,7 +18,7 @@ const app = express();
 const corsOptions = {
   origin: true,
   credentials: true,
-  allowedHeaders: ["sessionId", "Content-Type"],
+  allowedHeaders: ["sessionId", "Content-Type", "authorization"],
   exposedHeaders: ["sessionId"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
@@ -37,5 +37,5 @@ app.use("/feedback", feedbackRoutes);
 
 // Server
 app.listen(4000, () => {
-  console.log(`Listening on port 4000`);
+  console.log(`Listening on port 5000`);
 });
