@@ -8,16 +8,16 @@ import Events from "./src/screens/Events";
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
-    return(
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Group>
-                <Stack.Screen name="Home" component={Home}/>
-                <Stack.Screen name="Feedback" component={Feedback}/>
-                <Stack.Screen name="Events" component={Events}/>
-                <Stack.Screen name="Profil" component={Profil}/>
-            </Stack.Group>
-        </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Group>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Feedback" component={Feedback} />
+        <Stack.Screen name="Events" component={Events} />
+        <Stack.Screen name="Profil" component={Profil} />
+      </Stack.Group>
+    </Stack.Navigator>
+  );
 };
 
 export default StackNavigator;

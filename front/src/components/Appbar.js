@@ -1,13 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import {
-  AppBar,
-  Button,
-  Flex,
-  IconButton,
-  TouchableOpacity,
-  Image,
-} from "@react-native-material/core";
+import { AppBar, IconButton } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
