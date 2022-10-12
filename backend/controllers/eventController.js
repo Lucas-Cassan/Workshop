@@ -5,11 +5,11 @@ const { ObjectId } = require('mongodb')
 
 module.exports.createEvent = (req, res) => {
 
-    const {date, wording, description, place, token} = req.body;
+    const {date, wording, description, place} = req.body;
 
-    let decoded = jwt_decode(token);
+    const decoded = jwt_decode( req.headers['authorization']);
 
-    User.find({ email: decoded.user}).then((user) => {
+    User.findOne({ email: decoded.user}).then((user) => {
         if(!user){
             return res.status(400).send("User not found");
         }else{
@@ -17,7 +17,7 @@ module.exports.createEvent = (req, res) => {
                 wording: wording,
                 description: description,
                 date: date,
-                owner: user[0].name+" "+user[0].lastName,
+                owner: user.name+" "+user.lastName,
                 place: place,
                 registered: [ObjectId(user._id)]
               });
@@ -85,11 +85,17 @@ module.exports.delete = (req, res) => {
 };
 
 module.exports.registered = (req, res) => {
-    const { token, idEvent } = req.body;
-    let decoded = jwt_decode(token);
+    const { idEvent } = req.body;
+    const decoded = jwt_decode( req.headers['authorization']);
 
     Event.findById(idEvent).then(function (event){
         User.findOne({email: decoded.user}).then(function (user){
+            if (!user) {
+                throw new Error("Erreur de récupération de l'utilisateur")
+            }
+            if (event.registered.includes(user._id)) {
+                throw new Error("Cet utilisateur est déja enregistré sur cet event")
+            }
             event.registered.push(ObjectId(user._id));
             Event.updateOne({_id: event._id}, {$set : {
                 registered: event.registered
@@ -109,7 +115,7 @@ module.exports.registered = (req, res) => {
                   })
               })
               .catch(() => res.status(400).send({ error: "Erreur d'update not first time" }));
-        }).catch(() => res.status(400).send({ error: "Erreur de récupération de l'utilisateur"}))
+        }).catch((error) => res.status(400).send({ error: error.message}))
     }).catch(() => res.status(400).send({ error: "Erreur de récupération de l'event"}))
     
 };
