@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Button, Text, FAB } from "@react-native-material/core";
+import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 
 const FeedbackTodo = (props) => {
@@ -44,22 +44,23 @@ const stylesFeedback = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 20,
+    paddingTop: 15,
+    padding: 13,
   },
   title: {
+    marginLeft: 5,
     fontFamily: "Switzer-bold",
     fontSize: 26,
     color: "#ffffff",
     fontWeight: "bold",
-    marginLeft: 15,
-    marginTop: 20,
   },
   subtitle: {
+    marginLeft: 5,
     fontFamily: "Switzer-bold",
     fontSize: 12,
     color: "#ffffff",
     fontWeight: "bold",
-    marginLeft: 15,
-    marginTop: 5,
+    marginTop: 2,
   },
   btnTitleStyle: {
     backgroundColor: "#0088c0",
@@ -68,11 +69,9 @@ const stylesFeedback = StyleSheet.create({
     height: "auto",
     fontSize: 12,
     width: "auto",
-    marginLeft: 15,
-    marginRight: 15,
+
     borderRadius: "50px",
-    marginTop: 50,
-    marginBottom: 15,
+    marginTop: 60,
     textAlign: "center",
     display: "flex",
     justifyContent: "center",

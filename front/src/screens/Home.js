@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import { Button, SafeAreaView, Text } from "react-native";
 import EventRender from "../components/EventRender";
 import FeedbackTodo from "../components/FeedbackTodo";
