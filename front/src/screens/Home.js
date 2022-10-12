@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View } from "react-native";
-import { SafeAreaView, Text, View, Pressable } from "react-native";
+import { Button, SafeAreaView, Text } from "react-native";
 import EventRender from "../components/EventRender";
 import FeedbackTodo from "../components/FeedbackTodo";
 import Toppage from "../components/Toppage";
 import styles from "./style";
-import * as SecureStore from "expo-secure-store";
-import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
-  const navigation = useNavigation();
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    getUserToken();
-    async function getUserToken() {
-      const token = await SecureStore.getItemAsync("connexion-token");
-      if (token) {
-        setToken(token);
-      } else {
-        navigation.navigate("Auth");
-      }
-    }
-  }, []);
-
   return (
     <SafeAreaView style={styles.view}>
       <Toppage subTitle={"Nous sommes contents de te revoir."}>Accueil</Toppage>
