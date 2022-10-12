@@ -6,25 +6,27 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "../screens/style";
 
 const EventRender = (props) => {
-    const navigation = useNavigation();
     return (
-        <Pressable
-        onPress={() => navigation.navigate("Events")}
-        >
-            <View style={stylesFeedbackBlock.container}>
-                <Text style={stylesFeedbackBlock.textDate}>Feedback du {props.date}</Text>
-                <Text style={stylesFeedbackBlock.text}>{props.text}</Text>
-            </View>
-        </Pressable>
+        <View style={stylesFeedbackBlock.container}>
+            <Text style={stylesFeedbackBlock.textDate}>Feedback du {props.item.date}</Text>
+            <Text style={stylesFeedbackBlock.text}>{props.item.text}</Text>
+        </View>
     );
   };
   
   const stylesFeedbackBlock = StyleSheet.create({
     container: {
-
+        width: "90%",
+        borderRadius: "25",
+        display: "flex",
+        marginLeft: "auto",
+        marginRight: "auto",
     },
     textDate: {
-
+        marginLeft: 5,
+        fontSize: 16,
+        color: "#003A45",
+        fontWeight: "bold",
     },
     text: {
 
