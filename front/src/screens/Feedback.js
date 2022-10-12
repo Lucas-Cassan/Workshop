@@ -5,6 +5,7 @@ import Toppage from "../components/Toppage";
 import FeedbackTodo from "../components/FeedbackTodo";
 import styles from "./style";
 import dateFormat from "dateformat"
+import feedbackBlock from "../components/Feedback";
 
 function Feedback() {
 
@@ -65,9 +66,7 @@ function Feedback() {
                     <FlatList
                         data={data}
                         keyExtractor={item => item._id}
-                        renderItem={({item}) => (
-                            <Text>{item.date}</Text>
-                        )}
+                        renderItem={feedbackBlock(props)}
                     />
                 )}
 

@@ -1,19 +1,35 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Button, Text, FAB } from "@react-native-material/core";
+import { StyleSheet, View, Pressable } from "react-native";
+import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
+import styles from "../screens/style";
 
-const Feedback = () => {
+const EventRender = (props) => {
     const navigation = useNavigation();
     return (
-       <View>
-
-       </View>
+        <Pressable
+        onPress={() => navigation.navigate("Events")}
+        >
+            <View style={stylesFeedbackBlock.container}>
+                <Text style={stylesFeedbackBlock.textDate}>Feedback du {props.date}</Text>
+                <Text style={stylesFeedbackBlock.text}>{props.text}</Text>
+            </View>
+        </Pressable>
     );
-};
+  };
+  
+  const stylesFeedbackBlock = StyleSheet.create({
+    container: {
 
-const stylesFeedbackBlock = StyleSheet.create({
+    },
+    textDate: {
 
-});
+    },
+    text: {
 
-export default Feedback;
+    }
+  });
+  
+  export default EventRender;
+  
