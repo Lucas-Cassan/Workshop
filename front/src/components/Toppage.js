@@ -6,13 +6,13 @@ import { Text } from "@react-native-material/core";
 const Toppage = (props) => {
   return (
     <View>
-        <Text style={styles.title}>{props.children}</Text>
-        <Text style={styles.subtitle}>{props.subTitle}</Text>
+        <Text style={stylesToppage.title}>{props.children}</Text>
+        <Text style={stylesToppage.subtitle}>{props.subTitle}</Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const stylesToppage = StyleSheet.create({
   title: {
     fontFamily: 'Switzer-bold',
     fontSize: 28,

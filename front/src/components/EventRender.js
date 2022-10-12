@@ -7,23 +7,27 @@ import { Ionicons } from "@expo/vector-icons";
 const EventRender = (props) => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{props.eventTitle}</Text>
-      <View style={styles.eventInfos}>
-        <View style={styles.eventInfosObject}>
+    <View style={stylesEvent.container}>
+      <Text style={stylesEvent.title}>{props.eventTitle}</Text>
+      <View style={stylesEvent.eventInfos}>
+        <View style={stylesEvent.eventInfosObject}>
           <Ionicons name="ios-compass" size={24} color="#00a5e0" />
-          <Text style={styles.eventInfosObjectText}>{props.eventLocation}</Text>
+          <Text style={stylesEvent.eventInfosObjectText}>
+            {props.eventLocation}
+          </Text>
         </View>
-        <View style={styles.eventInfosObject}>
+        <View style={stylesEvent.eventInfosObject}>
           <Ionicons name="ios-calendar" size={24} color="#00a5e0" />
-          <Text style={styles.eventInfosObjectText}>{props.eventDate}</Text>
+          <Text style={stylesEvent.eventInfosObjectText}>
+            {props.eventDate}
+          </Text>
         </View>
       </View>
       <Pressable
-        style={styles.eventParticipantsBtn}
+        style={stylesEvent.eventParticipantsBtn}
         onPress={() => navigation.navigate("Events")}
       >
-        <Text style={styles.eventParticipantsBtnText}>
+        <Text style={stylesEvent.eventParticipantsBtnText}>
           {props.eventParticipants}
         </Text>
       </Pressable>
@@ -31,7 +35,7 @@ const EventRender = (props) => {
   );
 };
 
-const styles = StyleSheet.create({
+const stylesEvent = StyleSheet.create({
   container: {
     display: "flex",
     alignItems: "start",
