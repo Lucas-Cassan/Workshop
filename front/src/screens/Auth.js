@@ -3,6 +3,7 @@ import { SafeAreaView, TextInput, View, Text, Pressable } from "react-native";
 import Toppage from "../components/Toppage";
 import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import * as SecureStore from "expo-secure-store";
 
 const API_URL = "http://localhost:4000";
 
@@ -14,8 +15,9 @@ const Auth = () => {
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
+  const navigation = useNavigation();
+
   const onSubmitConnexion = () => {
-    const navigation = useNavigation();
     const payload = {
       email,
       password,
@@ -37,7 +39,9 @@ const Auth = () => {
           } else {
             setIsError(false);
             setIsLogin(true);
-            navigation.navigate("Home");
+            setUserId(jsonRes.userId);
+            setConnexionToken(email, jsonRes.token);
+            goHome();
           }
         } catch (err) {
           console.log(err);
@@ -48,6 +52,18 @@ const Auth = () => {
       });
   };
 
+  const getMessage = () => {
+    const status = isError ? `Error: ` : `Success: `;
+    return status + message;
+  };
+
+  async function setConnexionToken(value) {
+    await SecureStore.setItemAsync("connexion-token", value);
+  }
+
+  const goHome = () => {
+    navigation.navigate("Home");
+  };
   return (
     <SafeAreaView width={"100%"} style={styles.view}>
       <Toppage subTitle={"Nous sommes contents de vous revoir"}>
@@ -74,11 +90,6 @@ const Auth = () => {
       </View>
     </SafeAreaView>
   );
-};
-
-const getMessage = () => {
-  const status = isError ? `Error: ` : `Success: `;
-  return status + message;
 };
 
 const styles = StyleSheet.create({
