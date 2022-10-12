@@ -23,10 +23,7 @@ const Events = () => {
       <View style={stylesEventScreen.Container}>
         <Text style={stylesEventScreen.title}>Prochains évènements</Text>
         <View style={styles.ContainerScroll}>
-          <LinearGradient
-            colors={["rgba(0,0,0,0.2)", "transparent"]}
-            style={{ padding: 15, alignItems: "center", borderRadius: 5 }}
-          ></LinearGradient>
+          <View style={styles.shadowTop}></View>
           <ScrollView style={styles.Scroll}>
             <EventRender
               eventTitle={"Jet Ski"}
@@ -59,10 +56,7 @@ const Events = () => {
               eventDate={"12/10/2022"}
             />
           </ScrollView>
-          <LinearGradient
-            colors={["rgba(0,0,0,0.2)", "transparent"]}
-            style={{ padding: 15, alignItems: "center", borderRadius: 5 }}
-          ></LinearGradient>
+          <View style={styles.shadowBottom}></View>
         </View>
       </View>
     </SafeAreaView>
