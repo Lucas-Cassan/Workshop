@@ -1,40 +1,36 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Button, Text, FAB } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 
 const FeedbackTodo = (props) => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <View style={styles.feedbackContainer}>
+    <View style={stylesFeedback.container}>
+      <View style={stylesFeedback.feedbackContainer}>
         <View>
-          <Text style={styles.title}>{props.title}</Text>
-          <Text style={styles.subtitle}>{props.subTitle}</Text>
+          <Text style={stylesFeedback.title}>{props.title}</Text>
+          <Text style={stylesFeedback.subtitle}>{props.subTitle}</Text>
         </View>
         <View>
-          <FAB
-            style={styles.btnTitleStyle}
-            variant="extended"
-            label={props.btnTitle}
-            color={"#0088C0"}
-            tintColor={"#ffffff"}
-          />
+          <TouchableOpacity style={stylesFeedback.btnTitleStyle}>
+            <Text style={stylesFeedback.btnTextStyle}>{props.btnTitle}</Text>
+          </TouchableOpacity>
         </View>
       </View>
-      <Button
-        variant="text"
-        title={props.feedBackHistory}
-        color={"#B8C3C7"}
-        style={styles.feedbackHistoryBtn}
-        uppercase={false}
+      <TouchableOpacity
+        style={stylesFeedback.feedbackHistoryBtn}
         onPress={() => navigation.navigate("Feedback")}
-      />
+      >
+        <Text style={stylesFeedback.feedbackHistoryTextBtn}>
+          {props.feedBackHistory}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const stylesFeedback = StyleSheet.create({
   container: {
     width: "100%",
     display: "flex",
@@ -50,30 +46,56 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    fontSize: 28,
+    fontFamily: "Switzer-bold",
+    fontSize: 26,
     color: "#ffffff",
     fontWeight: "bold",
-    marginLeft: 20,
+    marginLeft: 15,
     marginTop: 20,
   },
   subtitle: {
+    fontFamily: "Switzer-bold",
     fontSize: 12,
     color: "#ffffff",
     fontWeight: "bold",
-    marginLeft: 20,
+    marginLeft: 15,
+    marginTop: 5,
   },
   btnTitleStyle: {
-    width: "80%",
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
+    backgroundColor: "#0088c0",
+    paddingTop: 10,
+    paddingBottom: 10,
+    height: "auto",
+    fontSize: 12,
+    width: "auto",
+    marginLeft: 15,
+    marginRight: 15,
     borderRadius: "50px",
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 50,
+    marginBottom: 15,
     textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  btnTextStyle: {
+    fontFamily: "Switzer-bold",
+    color: "white",
   },
   feedbackHistoryBtn: {
-    marginLeft: 10,
+    width: "90%",
+    display: "flex",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 10,
+    color: "B8C3C7",
+    letterSpacing: 0.1,
+  },
+  feedbackHistoryTextBtn: {
+    fontFamily: "Switzer-semibold",
+    fontSize: 13,
+    color: "#97A3A8",
+    letterSpacing: 0.1,
   },
 });
 
