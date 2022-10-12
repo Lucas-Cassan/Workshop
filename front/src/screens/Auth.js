@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as SecureStore from "expo-secure-store";
 
-const API_URL = "http://localhost:4000";
+const API_URL = "http://172.20.10.4:4000";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
