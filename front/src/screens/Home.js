@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
-import { SafeAreaView, Text, View, Pressable } from "react-native";
+import { SafeAreaView } from "react-native";
 import EventRender from "../components/EventRender";
 import FeedbackTodo from "../components/FeedbackTodo";
 import Toppage from "../components/Toppage";
