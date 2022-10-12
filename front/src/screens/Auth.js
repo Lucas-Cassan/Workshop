@@ -4,8 +4,7 @@ import Toppage from "../components/Toppage";
 import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as SecureStore from "expo-secure-store";
-
-const API_URL = "http://localhost:4000";
+import { IP_LOCAL } from "../../Constant";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +21,8 @@ const Auth = () => {
       email,
       password,
     };
-    fetch(`${API_URL}/user/login`, {
+    console.log(`${IP_LOCAL}/user/login`);
+    fetch(`${IP_LOCAL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -3,12 +3,10 @@ import { StyleSheet } from "react-native";
 import { View } from "react-native";
 import { SafeAreaView, Text, Button } from "react-native";
 import EventRender from "../components/EventRender";
-import FeedbackTodo from "../components/FeedbackTodo";
 import EventCreateBtn from "../components/EventCreateBtn";
 import Toppage from "../components/Toppage";
 import styles from "./style";
 import { ScrollView } from "react-native";
-import { LinearGradient } from "expo";
 
 const Events = () => {
   return (
@@ -23,7 +21,6 @@ const Events = () => {
       <View style={stylesEventScreen.Container}>
         <Text style={stylesEventScreen.title}>Prochains évènements</Text>
         <View style={styles.ContainerScroll}>
-          <View style={styles.shadowTop}></View>
           <ScrollView style={styles.Scroll}>
             <EventRender
               eventTitle={"Jet Ski"}
@@ -56,7 +53,6 @@ const Events = () => {
               eventDate={"12/10/2022"}
             />
           </ScrollView>
-          <View style={styles.shadowBottom}></View>
         </View>
       </View>
     </SafeAreaView>
@@ -76,6 +72,7 @@ const stylesEventScreen = StyleSheet.create({
     fontSize: 25,
     color: "#003A45",
     fontWeight: "bold",
+    marginBottom: 5,
   },
 });
 

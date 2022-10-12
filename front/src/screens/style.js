@@ -7,29 +7,13 @@ const styles = StyleSheet.create({
   },
   ContainerScroll: {
     width: "100%",
-    height: 450,
+    height: "67%",
     overflow: "scroll",
   },
   Scroll: {
     width: "100%",
     height: "100%",
     overflow: "scroll",
-  },
-  shadowTop: {
-    width: "100%",
-    position: "fixed",
-    height: "5%",
-    top: 0,
-    backgroundColor: "black",
-    zIndex: 5,
-  },
-  shadowBottom: {
-    width: "100%",
-    position: "fixed",
-    bottom: 0,
-    height: "5%",
-    backgroundColor: "black",
-    zIndex: 5,
   },
 });
 
