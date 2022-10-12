@@ -1,74 +1,101 @@
 import React from "react";
-import { StyleSheet, View } from 'react-native';
-import { Button, Text, FAB } from "@react-native-material/core";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
-
 
 const FeedbackTodo = (props) => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container} >
-        <View style={styles.feedbackContainer}>
-            <View>
-                <Text style={styles.title}>{props.title}</Text>
-                <Text style={styles.subtitle}>{props.subTitle}</Text>
-            </View>
-            <View>
-                <FAB style={styles.btnTitleStyle} variant="extended" label={props.btnTitle} color={"#0088C0"} tintColor={"#ffffff"}/>
-            </View>
+    <View style={stylesFeedback.container}>
+      <View style={stylesFeedback.feedbackContainer}>
+        <View>
+          <Text style={stylesFeedback.title}>{props.title}</Text>
+          <Text style={stylesFeedback.subtitle}>{props.subTitle}</Text>
         </View>
-        <Button 
-            variant="text" 
-            title={props.feedBackHistory} 
-            color={"#B8C3C7"} 
-            style={styles.feedbackHistoryBtn} 
-            uppercase={false} 
-            onPress={() => navigation.navigate("Feedback")}/>
+        <View>
+          <TouchableOpacity style={stylesFeedback.btnTitleStyle}>
+            <Text style={stylesFeedback.btnTextStyle}>{props.btnTitle}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <TouchableOpacity
+        style={stylesFeedback.feedbackHistoryBtn}
+        onPress={() => navigation.navigate("Feedback")}
+      >
+        <Text style={stylesFeedback.feedbackHistoryTextBtn}>
+          {props.feedBackHistory}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        width: "100%",
-        display: "flex",
-        alignItems: "start",
-    },
-    feedbackContainer: {
-        width: "90%",
-        backgroundColor: "#00A4E0",
-        borderRadius: "25",
-        display: "flex",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: 20,
-    },
-    title: {
-        fontSize: 28,
-        color: "#ffffff",
-        fontWeight: "bold",
-        marginLeft: 20,
-        marginTop: 20,
-    },
-    subtitle: {
-        fontSize: 12,
-        color: "#ffffff",
-        fontWeight: "bold",
-        marginLeft: 20,
-    },
-    btnTitleStyle: {
-        width: "80%",
-        display: "block",
-        marginLeft: "auto",
-        marginRight: "auto",
-        borderRadius: "50px",
-        marginTop: 20,
-        marginBottom: 20,
-        textAlign: "center",
-    },
-    feedbackHistoryBtn: {
-        marginLeft: 10,
-    }
+const stylesFeedback = StyleSheet.create({
+  container: {
+    width: "100%",
+    display: "flex",
+    alignItems: "start",
+  },
+  feedbackContainer: {
+    width: "90%",
+    backgroundColor: "#00A4E0",
+    borderRadius: "25",
+    display: "flex",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 20,
+    paddingTop: 15,
+    padding: 13,
+  },
+  title: {
+    marginLeft: 5,
+    fontFamily: "Switzer-bold",
+    fontSize: 26,
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+  subtitle: {
+    marginLeft: 5,
+    fontFamily: "Switzer-bold",
+    fontSize: 12,
+    color: "#ffffff",
+    fontWeight: "bold",
+    marginTop: 2,
+  },
+  btnTitleStyle: {
+    backgroundColor: "#0088c0",
+    paddingTop: 10,
+    paddingBottom: 10,
+    height: "auto",
+    fontSize: 12,
+    width: "auto",
+
+    borderRadius: "50px",
+    marginTop: 60,
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  btnTextStyle: {
+    fontFamily: "Switzer-bold",
+    color: "white",
+  },
+  feedbackHistoryBtn: {
+    width: "90%",
+    display: "flex",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 10,
+    color: "B8C3C7",
+    letterSpacing: 0.1,
+  },
+  feedbackHistoryTextBtn: {
+    fontFamily: "Switzer-semibold",
+    fontSize: 13,
+    color: "#97A3A8",
+    letterSpacing: 0.1,
+  },
 });
 
 export default FeedbackTodo;

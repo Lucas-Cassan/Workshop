@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt");
+const fs = require('fs');
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+
+const secretKey = fs.readFileSync('./config/secret.key', 'utf8');
 
 module.exports.signup = (req, res, next) => {
   const { name, lastName, email, password } = req.body;
@@ -14,13 +17,14 @@ module.exports.signup = (req, res, next) => {
         lastName: lastName,
         email: email,
         password: hash,
+          xp: 0
       });
       user
         .save()
         .then(() => {
           res.status(201).json({
             message: "Utilisateur créé !",
-            token: jwt.sign({ user: email }, "ueahzçidhaée&é&!&èéçà", {
+            token: jwt.sign({ user: email }, secretKey, {
               expiresIn: "24h",
             }),
           });
@@ -47,7 +51,7 @@ module.exports.login = (req, res, next) => {
             console.log("connecté");
             res.status(200).json({
               userId: user._id,
-              token: jwt.sign({ user: user.email }, "ueahzçidhaée&é&!&èéçà", {
+              token: jwt.sign({ user: user.email }, secretKey, {
                 expiresIn: "24h",
               }),
             });

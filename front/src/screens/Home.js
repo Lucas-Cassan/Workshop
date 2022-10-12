@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { View } from "react-native";
 import { SafeAreaView, Text, View, Pressable } from "react-native";
 import EventRender from "../components/EventRender";
 import FeedbackTodo from "../components/FeedbackTodo";
@@ -24,8 +25,8 @@ const Home = () => {
   }, []);
 
   return (
-    <SafeAreaView width={"100%"} style={styles.view}>
-      <Toppage subTitle={"Nous sommes contents de te revoir"}>Accueil</Toppage>
+    <SafeAreaView style={styles.view}>
+      <Toppage subTitle={"Nous sommes contents de te revoir."}>Accueil</Toppage>
       <FeedbackTodo
         title={"Ton feedback"}
         subTitle={"de la semaine du 10/10"}
