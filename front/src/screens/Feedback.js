@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:4000/";
 import React, {useEffect, useState} from "react";
-import {SafeAreaView, Text, Button, StyleSheet, FlatList, ActivityIndicator, View} from "react-native";
+import {SafeAreaView, Text, Button, StyleSheet, FlatList, ActivityIndicator, View, ScrollView} from "react-native";
 import Toppage from "../components/Toppage";
 import FeedbackTodo from "../components/FeedbackTodo";
 import styles from "./style";
@@ -60,29 +60,42 @@ function Feedback() {
                 subTitle={"de la semaine du 10/10"}
                 btnTitle={"Remplir dès maintenant"}
             />
-            <Text style={stylesFeedback.title}>Historique</Text>
-
-                {isLoading ? <ActivityIndicator/> : (
-                    <FlatList
-                        data={data}
-                        keyExtractor={item => item._id}
-                        renderItem={feedbackBlock(props)}
-                    />
-                )}
-
+            <View style={stylesFeedBackBlock.Container}>
+                <Text style={stylesFeedBackBlock.title}>Historique</Text>
+                <View style={styles.ContainerScroll}>
+                    <View style={styles.shadowTop}>
+                    </View>
+                    <ScrollView style={styles.Scroll}>
+                        {isLoading ? <ActivityIndicator/> : (
+                        <FlatList
+                            data={data}
+                            keyExtractor={item => item._id}
+                            renderItem={feedbackBlock}
+                        />
+                        )}
+                    </ScrollView>
+                    <View style={styles.shadowBottom}></View>
+                </View>
+            </View>
         </SafeAreaView>
     );
 };
 
-const stylesFeedback = StyleSheet.create({
+const stylesFeedBackBlock = StyleSheet.create({
+    Container: {
+      width: "90%",
+      borderRadius: "25",
+      display: "flex",
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
     title: {
-        fontFamily: 'Switzer-bold',
-        fontSize: 25,
-        color: "#003a45",
-        marginLeft: 25,
-        marginTop: 10,
-    }
-})
+      marginLeft: 5,
+      fontSize: 25,
+      color: "#003A45",
+      fontWeight: "bold",
+    },
+  });
 
 export default Feedback;
 
