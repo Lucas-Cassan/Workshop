@@ -49,7 +49,7 @@ module.exports.getAllEvent = (req, res) => {
                 var dateA = new Date(a.date), dateB = new Date(b.date)
                 return dateA - dateB
             });
-            event = event.slice(0, 5);
+            event = event.slice(0, 4);
         }
         res.status(200).json({
           event: event
