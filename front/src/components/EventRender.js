@@ -45,7 +45,7 @@ const stylesEvent = StyleSheet.create({
     display: "flex",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: 20,
+    marginBottom: 20,
     paddingTop: 15,
     padding: 13,
   },

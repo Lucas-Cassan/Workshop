@@ -7,9 +7,10 @@ const EventCreateBtn = (props) => {
   const navigation = useNavigation();
   return (
     <View style={stylesEventCreateBtn.container}>
-      <View style={stylesEventCreateBtn.EventContainer}>
+      <View style={stylesEventCreateBtn.feedbackContainer}>
         <View>
           <Text style={stylesEventCreateBtn.title}>{props.title}</Text>
+          <Text style={stylesEventCreateBtn.subtitle}>{props.subTitle}</Text>
         </View>
         <View>
           <TouchableOpacity style={stylesEventCreateBtn.btnTitleStyle}>
@@ -19,6 +20,14 @@ const EventCreateBtn = (props) => {
           </TouchableOpacity>
         </View>
       </View>
+      <TouchableOpacity
+        style={stylesEventCreateBtn.feedbackHistoryBtn}
+        onPress={() => navigation.navigate("Feedback")}
+      >
+        <Text style={stylesEventCreateBtn.feedbackHistoryTextBtn}>
+          {props.feedBackHistory}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -29,7 +38,7 @@ const stylesEventCreateBtn = StyleSheet.create({
     display: "flex",
     alignItems: "start",
   },
-  EventContainer: {
+  feedbackContainer: {
     width: "90%",
     backgroundColor: "#00A4E0",
     borderRadius: "25",
@@ -37,7 +46,6 @@ const stylesEventCreateBtn = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 20,
-    marginBottom: 30,
     paddingTop: 15,
     padding: 13,
   },
@@ -48,6 +56,14 @@ const stylesEventCreateBtn = StyleSheet.create({
     color: "#ffffff",
     fontWeight: "bold",
   },
+  subtitle: {
+    marginLeft: 5,
+    fontFamily: "Switzer-bold",
+    fontSize: 12,
+    color: "#ffffff",
+    fontWeight: "bold",
+    marginTop: 2,
+  },
   btnTitleStyle: {
     backgroundColor: "#0088c0",
     paddingTop: 10,
@@ -57,7 +73,7 @@ const stylesEventCreateBtn = StyleSheet.create({
     width: "auto",
 
     borderRadius: "50px",
-    marginTop: 20,
+    marginTop: 60,
     textAlign: "center",
     display: "flex",
     justifyContent: "center",
@@ -66,6 +82,21 @@ const stylesEventCreateBtn = StyleSheet.create({
   btnTextStyle: {
     fontFamily: "Switzer-bold",
     color: "white",
+  },
+  feedbackHistoryBtn: {
+    width: "90%",
+    display: "flex",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 10,
+    color: "B8C3C7",
+    letterSpacing: 0.1,
+  },
+  feedbackHistoryTextBtn: {
+    fontFamily: "Switzer-semibold",
+    fontSize: 13,
+    color: "#97A3A8",
+    letterSpacing: 0.1,
   },
 });
 

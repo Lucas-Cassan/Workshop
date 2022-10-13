@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Text, View, StyleSheet, ScrollView } from "react-native";
 import EventRender from "../components/EventRender";
 import FeedbackTodo from "../components/FeedbackTodo";
 import Toppage from "../components/Toppage";
@@ -32,13 +32,62 @@ const Home = () => {
         btnTitle={"Remplir dès maintenant"}
         feedBackHistory={"Voir l'historique de mes feedbacks"}
       />
-      <EventRender
-        eventTitle={"Jet Ski"}
-        eventParticipants={"12 Participants"}
-        eventLocation={"La Grande Motte"}
-        eventDate={"12/10/2022"}
-      />
+      <View style={stylesEventScreenHome.Container}>
+        <Text style={stylesEventScreenHome.title}>Prochains évènements</Text>
+        <View style={styles.ContainerScroll}>
+          <ScrollView style={styles.Scroll}>
+            <EventRender
+              eventTitle={"Jet Ski"}
+              eventParticipants={"12 Participants"}
+              eventLocation={"La Grande Motte"}
+              eventDate={"12/10/2022"}
+            />
+            <EventRender
+              eventTitle={"Jet Ski"}
+              eventParticipants={"12 Participants"}
+              eventLocation={"La Grande Motte"}
+              eventDate={"12/10/2022"}
+            />
+            <EventRender
+              eventTitle={"Jet Ski"}
+              eventParticipants={"12 Participants"}
+              eventLocation={"La Grande Motte"}
+              eventDate={"12/10/2022"}
+            />
+            <EventRender
+              eventTitle={"Jet Ski"}
+              eventParticipants={"12 Participants"}
+              eventLocation={"La Grande Motte"}
+              eventDate={"12/10/2022"}
+            />
+            <EventRender
+              eventTitle={"Jet Ski"}
+              eventParticipants={"12 Participants"}
+              eventLocation={"La Grande Motte"}
+              eventDate={"12/10/2022"}
+            />
+          </ScrollView>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
+
+const stylesEventScreenHome = StyleSheet.create({
+  Container: {
+    width: "90%",
+    borderRadius: "25",
+    display: "flex",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  title: {
+    marginLeft: 5,
+    fontSize: 25,
+    color: "#003A45",
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+});
+
 export default Home;
