@@ -5,21 +5,21 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
 const EventRender = (props) => {
-  const navigation = useNavigation();
+  console.log(props)
   return (
     <View style={stylesEvent.container}>
-      <Text style={stylesEvent.title}>{props.eventTitle}</Text>
+      <Text style={stylesEvent.title}>{props.item.wording}</Text>
       <View style={stylesEvent.eventInfos}>
         <View style={stylesEvent.eventInfosObject}>
           <Ionicons name="ios-compass" size={24} color="#00a5e0" />
           <Text style={stylesEvent.eventInfosObjectText}>
-            {props.eventLocation}
+            {props.item.place}
           </Text>
         </View>
         <View style={stylesEvent.eventInfosObject}>
           <Ionicons name="ios-calendar" size={24} color="#00a5e0" />
           <Text style={stylesEvent.eventInfosObjectText}>
-            {props.eventDate}
+            {props.item.date}
           </Text>
         </View>
       </View>
@@ -28,7 +28,7 @@ const EventRender = (props) => {
         onPress={() => navigation.navigate("Events")}
       >
         <Text style={stylesEvent.eventParticipantsBtnText}>
-          {props.eventParticipants}
+          {props.item.registered.length} participants
         </Text>
       </Pressable>
     </View>

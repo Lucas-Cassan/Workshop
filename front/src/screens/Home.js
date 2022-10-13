@@ -1,15 +1,55 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, View, StyleSheet, ScrollView } from "react-native";
+import { SafeAreaView, Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
 import EventRender from "../components/EventRender";
 import FeedbackTodo from "../components/FeedbackTodo";
 import Toppage from "../components/Toppage";
 import styles from "./style";
 import * as SecureStore from "expo-secure-store";
 import { useNavigation } from "@react-navigation/native";
+import { IP_LOCAL } from "../../Constant";
+import dateFormat from "dateformat";
 
-const Home = () => {
+function Home() {
   const navigation = useNavigation();
   const [token, setToken] = useState("");
+  const [data, setdata] = useState([]);
+
+  const getEvent = async () => {
+      await fetch(`${IP_LOCAL}/event/getAllEvent`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        params: {
+          limit: true
+        }
+      })
+        .then(async (res) => {
+          try {
+            const jsonRes = await res.json();
+            if (res.status !== 200) {
+              console.log(jsonRes);
+            } else {
+              console.log(jsonRes);
+              for (let i = 0; i < jsonRes.event.length; i++) {
+                const maDate = new Date(jsonRes.event[i].date);
+                jsonRes.event[i].date = dateFormat(maDate, "dd/mm/yyyy");
+              }
+              console.log(jsonRes.event);
+              setdata(jsonRes.event);
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    useEffect(() => {
+      getEvent();
+    }, []);
 
   useEffect(() => {
     getUserToken();
@@ -36,36 +76,11 @@ const Home = () => {
         <Text style={stylesEventScreenHome.title}>Prochains évènements</Text>
         <View style={styles.ContainerScroll}>
           <ScrollView style={styles.Scroll}>
-            <EventRender
-              eventTitle={"Jet Ski"}
-              eventParticipants={"12 Participants"}
-              eventLocation={"La Grande Motte"}
-              eventDate={"12/10/2022"}
-            />
-            <EventRender
-              eventTitle={"Jet Ski"}
-              eventParticipants={"12 Participants"}
-              eventLocation={"La Grande Motte"}
-              eventDate={"12/10/2022"}
-            />
-            <EventRender
-              eventTitle={"Jet Ski"}
-              eventParticipants={"12 Participants"}
-              eventLocation={"La Grande Motte"}
-              eventDate={"12/10/2022"}
-            />
-            <EventRender
-              eventTitle={"Jet Ski"}
-              eventParticipants={"12 Participants"}
-              eventLocation={"La Grande Motte"}
-              eventDate={"12/10/2022"}
-            />
-            <EventRender
-              eventTitle={"Jet Ski"}
-              eventParticipants={"12 Participants"}
-              eventLocation={"La Grande Motte"}
-              eventDate={"12/10/2022"}
-            />
+          <FlatList
+                data={data}
+                keyExtractor={(item) => item._id}
+                renderItem={EventRender}
+              />
           </ScrollView>
         </View>
       </View>

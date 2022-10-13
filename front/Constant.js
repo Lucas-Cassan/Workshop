@@ -1,1 +1,1 @@
-export const IP_LOCAL = "http://192.168.1.62:4000";
+export const IP_LOCAL = "http://172.20.10.7:4000";
