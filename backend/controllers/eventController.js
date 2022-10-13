@@ -43,7 +43,7 @@ module.exports.createEvent = (req, res) => {
 
 module.exports.getAllEvent = (req, res) => {
     Event.find({}).then(function (event) {
-        const {limit} = req.body;
+        const {limit} = req.params;
         if (limit) {
             event.sort(function (a, b) {
                 var dateA = new Date(a.date), dateB = new Date(b.date)
