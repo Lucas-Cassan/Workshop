@@ -43,6 +43,14 @@ module.exports.createEvent = (req, res) => {
 
 module.exports.getAllEvent = (req, res) => {
     Event.find({}).then(function (event) {
+        const {limit} = req.body;
+        if (limit) {
+            event.sort(function (a, b) {
+                var dateA = new Date(a.date), dateB = new Date(b.date)
+                return dateA - dateB
+            });
+            event = event.slice(0, 5);
+        }
         res.status(200).json({
           event: event
         });
