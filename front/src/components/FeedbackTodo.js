@@ -13,7 +13,10 @@ const FeedbackTodo = (props) => {
           <Text style={stylesFeedback.subtitle}>{props.subTitle}</Text>
         </View>
         <View>
-          <TouchableOpacity style={stylesFeedback.btnTitleStyle}>
+          <TouchableOpacity
+            style={stylesFeedback.btnTitleStyle}
+            onPress={() => navigation.navigate("FeedbackSubmit")}
+          >
             <Text style={stylesFeedback.btnTextStyle}>{props.btnTitle}</Text>
           </TouchableOpacity>
         </View>

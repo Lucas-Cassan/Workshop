@@ -5,6 +5,7 @@ import Feedback from "./src/screens/Feedback";
 import Profil from "./src/screens/Profil";
 import Events from "./src/screens/Events";
 import Auth from "./src/screens/Auth";
+import FeedbackSubmit from "./src/screens/FeedbackSubmit";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Events" component={Events} />
         <Stack.Screen name="Profil" component={Profil} />
         <Stack.Screen name="Auth" component={Auth} />
+        <Stack.Screen name="FeedbackSubmit" component={FeedbackSubmit} />
       </Stack.Group>
     </Stack.Navigator>
   );
